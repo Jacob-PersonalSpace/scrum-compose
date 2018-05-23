@@ -12,7 +12,7 @@ services:
     image: "mysql:5.7"
     container_name: "scrummysqldb"
     volumes:
-      - ./.data/db:/var/lib/mysql
+      - ../mysqlData/scrum:/var/lib/mysql
     restart: always
     ports:
       - "3307:3306"
