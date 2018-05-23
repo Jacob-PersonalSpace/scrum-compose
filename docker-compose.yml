@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  scrumui:
+    image: "jacobesquel/scrum-ui"
+    container_name: "scrumui"
+    ports:
+      - "12801:3000"
+    restart: always
+
+  mysql:
+    image: "mysql:5.7"
+    container_name: "scrummysqldb"
+    volumes:
+      - ./.data/db:/var/lib/mysql
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Pw123456
+
+  scrumserver:
+    image: "jacobesquel/scrum-server"
+    container_name: "scrumserver"
+    depends_on:
+      - mysql
+    links:
+      - mysql:db
+    restart: always
+    ports:
+      - "12800:3000"
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USERNAME: scrum_user
+      DATABASE_PASSWORD: Pw654321
+
+  phpmyadmin:
+    image: "phpmyadmin/phpmyadmin"
+    container_name: "scrummysqladmin"
+    depends_on:
+      - mysql
+    links:
+      - mysql:db
+    restart: always
+    ports:
+      - "12802:80"
