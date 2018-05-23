@@ -5,7 +5,7 @@ services:
     image: "jacobesquel/scrum-ui"
     container_name: "scrumui"
     ports:
-      - "12801:3000"
+      - "12801:8080"
     restart: always
 
   mysql:
