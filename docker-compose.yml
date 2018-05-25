@@ -2,11 +2,13 @@ version: '3'
 
 services:
   scrumui:
-    image: "jacobesquel/scrum-ui"
+    image: "jacobesquel/scrum-ui:0.1"
     container_name: "scrumui"
     ports:
       - "12801:8080"
     restart: always
+    # environment:
+    #   PRODUCTION_BACKEND_HOST: "http://localhost:12800"
 
   mysql:
     image: "mysql:5.7"
@@ -20,7 +22,7 @@ services:
       MYSQL_ROOT_PASSWORD: Pw123456
 
   scrumserver:
-    image: "jacobesquel/scrum-server"
+    image: "jacobesquel/scrum-server:0.1"
     container_name: "scrumserver"
     depends_on:
       - mysql
