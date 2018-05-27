@@ -2,7 +2,7 @@ version: '3'
 
 services:
   scrumui:
-    image: "jacobesquel/scrum-ui:0.1"
+    image: "jacobesquel/scrum-ui:0.11"
     container_name: "scrumui"
     ports:
       - "12801:8080"
